@@ -27,13 +27,12 @@ h1{
     margin:auto;
 }
 
-/* ===== COUPON ===== */
 .coupon{
     position:relative;
     border:4px solid #333;
     border-radius:14px;
     padding:30px 20px;
-    padding-right:120px; /* เว้นที่ให้แถบข้าง */
+    padding-right:120px; 
     cursor:pointer;
     transition:0.4s;
     overflow:hidden;
@@ -56,7 +55,7 @@ h1{
 .coupon::before{ left:-14px; }
 .coupon::after{ right:-14px; }
 
-/* ข้อความหลัก */
+
 .main{
     font-family:'Lobster', cursive;
     font-size:24px;
@@ -65,14 +64,14 @@ h1{
     word-break:break-word;
 }
 
-/* ข้อความรอง */
+
 .sub{
     margin-top:8px;
     font-size:14px;
     opacity:0.7;
 }
 
-/* แถบข้าง */
+
 .side{
     position:absolute;
     top:0;
@@ -87,13 +86,13 @@ h1{
     font-weight:bold;
 }
 
-/* สี */
+
 .pink{ background:#f6c1d1; }
 .orange{ background:#f4a261; }
 .blue{ background:#9bb6d6; }
 .red{ background:#e76f51; }
 
-/* เอฟเฟกต์ฉีก */
+
 @keyframes tear {
     0% { transform:rotate(0deg) scale(1); opacity:1; }
     50% { transform:rotate(5deg) scale(1.05); }
@@ -155,7 +154,7 @@ h1{
 </div>
 
 <script>
-// เสียงฉีก
+
 function playTearSound(){
     const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
     audio.volume = 0.4;
