@@ -71,13 +71,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // โหลดสถานะตอนเปิดเว็บ
         if(localStorage.getItem("coupon_" + index) === "used"){
             coupon.classList.add("used");
-            coupon.innerHTML += "<br>✔ ใช้แล้ว!";
+            coupon.innerHTML += "<br>✔ USED!";
         }
 
         coupon.addEventListener("click", function(){
             if(!coupon.classList.contains("used")){
                 coupon.classList.add("used");
-                coupon.innerHTML += "<br>✔ ใช้แล้ว!";
+                coupon.innerHTML += "<br>✔ USED!";
                 localStorage.setItem("coupon_" + index, "used");
             }
         });
