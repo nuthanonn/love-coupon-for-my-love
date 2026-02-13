@@ -2,38 +2,11 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Love Coupon Book</title>
-<style>
-body{
-    font-family: Arial;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    text-align:center;
-    padding:40px;
-}
-h1{
-    color:white;
-}
-.coupon{
-    background:white;
-    width:300px;
-    margin:20px auto;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
-    cursor:pointer;
-    transition:0.3s;
-}
-.coupon:hover{
-    transform:scale(1.05);
-}
-.used{
-    background:#ddd;
-    text-decoration:line-through;
-    color:gray;
-}
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@500;700&display=swap');
+<title>Coupons only P'Patch 💖</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
 body{
     background:#e5e5e5;
     font-family:'Poppins', sans-serif;
@@ -42,79 +15,68 @@ body{
 }
 
 h1{
-    margin-bottom:30px;
+    margin-bottom:40px;
 }
 
 .container{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap:25px;
-    max-width:1000px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap:30px;
+    max-width:1100px;
     margin:auto;
 }
 
-/* ===== COUPON STYLE ===== */
+/* ===== COUPON ===== */
 .coupon{
     position:relative;
-    background:#f6d6db;
     border:4px solid #333;
-    border-radius:12px;
-    padding:25px 20px;
+    border-radius:14px;
+    padding:30px 20px;
     cursor:pointer;
     transition:0.3s;
 }
 
-/* รูเจาะตรงกลาง */
-.coupon::before{
-    content:"";
-    position:absolute;
-    top:50%;
-    right:-12px;
-    transform:translateY(-50%);
-    width:24px;
-    height:24px;
-    background:#e5e5e5;
-    border-radius:50%;
-    border:4px solid #333;
-}
-
+/* รูเจาะ */
+.coupon::before,
 .coupon::after{
     content:"";
     position:absolute;
     top:50%;
-    left:-12px;
     transform:translateY(-50%);
     width:24px;
     height:24px;
     background:#e5e5e5;
-    border-radius:50%;
     border:4px solid #333;
+    border-radius:50%;
 }
 
-.coupon:hover{
-    transform:scale(1.05);
+.coupon::before{
+    left:-14px;
+}
+
+.coupon::after{
+    right:-14px;
 }
 
 /* ข้อความ */
-.coupon .main{
+.main{
     font-family:'Lobster', cursive;
-    font-size:26px;
+    font-size:28px;
 }
 
-.coupon .sub{
+.sub{
     margin-top:8px;
     font-size:14px;
     opacity:0.7;
 }
 
-/* แถบด้านขวา */
-.coupon .side{
+/* แถบข้าง */
+.side{
     position:absolute;
     top:0;
     right:0;
-    width:80px;
+    width:90px;
     height:100%;
-    background:#f4a261;
     border-left:4px dashed #333;
     display:flex;
     align-items:center;
@@ -124,35 +86,58 @@ h1{
     font-weight:bold;
 }
 
+/* สีแต่ละใบ */
+.pink{ background:#f6c1d1; }
+.orange{ background:#f4a261; }
+.blue{ background:#9bb6d6; }
+.red{ background:#e76f51; }
+
 /* ใช้แล้ว */
 .used{
     background:#ccc !important;
-    text-decoration:line-through;
     color:#555;
+    text-decoration:line-through;
 }
 </style>
-
 </head>
+
 <body>
 
-<h1> Coupons only P'Patch 💖</h1>
-<p>Click to use</p>
+<h1>Coupons only P'Patch 💖</h1>
 
 <div class="container">
 
-<div class="coupon">
+<div class="coupon pink">
     <div class="main">FREE Sushiro</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon">
+<div class="coupon orange">
+    <div class="main">FREE Sushiro</div>
+    <div class="sub">Click to use</div>
+    <div class="side">Valentine edition</div>
+</div>
+
+<div class="coupon blue">
     <div class="main">Big Hug 10 mins</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon">
+<div class="coupon red">
+    <div class="main">Ask for a favor (anything)</div>
+    <div class="sub">Click to use</div>
+    <div class="side">Valentine edition</div>
+</div>
+
+<div class="coupon orange">
+    <div class="main">Ask for a favor (anything)</div>
+    <div class="sub">Click to use</div>
+    <div class="side">Valentine edition</div>
+</div>
+
+<div class="coupon pink">
     <div class="main">Ask for a favor (anything)</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
@@ -160,30 +145,24 @@ h1{
 
 </div>
 
-    
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const coupons = document.querySelectorAll(".coupon");
 
     coupons.forEach((coupon, index) => {
-        // โหลดสถานะตอนเปิดเว็บ
         if(localStorage.getItem("coupon_" + index) === "used"){
             coupon.classList.add("used");
-            coupon.innerHTML += "<br>✔ USED!";
         }
 
         coupon.addEventListener("click", function(){
             if(!coupon.classList.contains("used")){
                 coupon.classList.add("used");
-                coupon.innerHTML += "<br>✔ USED!";
                 localStorage.setItem("coupon_" + index, "used");
             }
         });
     });
 });
 </script>
-
 
 </body>
 </html>
