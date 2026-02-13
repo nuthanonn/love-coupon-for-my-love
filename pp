@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Love Coupon Book</title>
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    text-align:center;
+    padding:40px;
+}
+h1{
+    color:white;
+}
+.coupon{
+    background:white;
+    width:300px;
+    margin:20px auto;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    cursor:pointer;
+    transition:0.3s;
+}
+.coupon:hover{
+    transform:scale(1.05);
+}
+.used{
+    background:#ddd;
+    text-decoration:line-through;
+    color:gray;
+}
+</style>
+</head>
+<body>
+
+<h1>💖 คูปองสำหรับแฟน 💖</h1>
+<p>กดที่คูปองเพื่อฉีกใช้ได้เลย</p>
+
+<div class="coupon" onclick="useCoupon(this)">
+    กอดฟรี 10 นาที
+</div>
+
+<div class="coupon" onclick="useCoupon(this)">
+    เลือกหนังคืนนี้
+</div>
+
+<div class="coupon" onclick="useCoupon(this)">
+    หอมแก้ม 1 ครั้ง
+</div>
+
+<div class="coupon" onclick="useCoupon(this)">
+    งอนแล้วต้องง้อทันที
+</div>
+
+<script>
+function useCoupon(element){
+    element.classList.add("used");
+    element.innerHTML += "<br>✔ ใช้แล้ว!";
+}
+</script>
+
+</body>
+</html>
