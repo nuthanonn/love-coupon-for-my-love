@@ -8,11 +8,13 @@
 
 <style>
 body{
-    background:#e5e5e5;
+    margin:0;
+    background:#f2f2f2;
     font-family:'Poppins', sans-serif;
     text-align:center;
     padding:40px;
     overflow-x:hidden;
+    position:relative;
 }
 
 h1{
@@ -25,18 +27,28 @@ h1{
     gap:30px;
     max-width:1100px;
     margin:auto;
+    position:relative;
+    z-index:2;
 }
 
+/* ===== COUPON ===== */
 .coupon{
     position:relative;
     border:4px solid #333;
     border-radius:14px;
     padding:30px 20px;
-    padding-right:120px; 
+    padding-right:120px;
     cursor:pointer;
     transition:0.4s;
+    background:#f6c1d1;
     overflow:hidden;
 }
+
+.coupon:nth-child(2){ background:#f4a261; }
+.coupon:nth-child(3){ background:#9bb6d6; }
+.coupon:nth-child(4){ background:#e76f51; }
+.coupon:nth-child(5){ background:#f4a261; }
+.coupon:nth-child(6){ background:#f6c1d1; }
 
 /* รูเจาะ */
 .coupon::before,
@@ -47,7 +59,7 @@ h1{
     transform:translateY(-50%);
     width:24px;
     height:24px;
-    background:#e5e5e5;
+    background:#f2f2f2;
     border:4px solid #333;
     border-radius:50%;
 }
@@ -55,22 +67,18 @@ h1{
 .coupon::before{ left:-14px; }
 .coupon::after{ right:-14px; }
 
-
 .main{
     font-family:'Lobster', cursive;
     font-size:24px;
     line-height:1.2;
-    max-width:100%;
     word-break:break-word;
 }
-
 
 .sub{
     margin-top:8px;
     font-size:14px;
     opacity:0.7;
 }
-
 
 .side{
     position:absolute;
@@ -86,20 +94,10 @@ h1{
     font-weight:bold;
 }
 
-
-.pink{ background:#f6c1d1; }
-.orange{ background:#f4a261; }
-.blue{ background:#9bb6d6; }
-.red{ background:#e76f51; }
-
-
+/* ฉีก */
 @keyframes tear {
     0% { transform:rotate(0deg) scale(1); opacity:1; }
-    50% { transform:rotate(5deg) scale(1.05); }
-    100% { 
-        transform:translateY(200px) rotate(15deg) scale(0.8);
-        opacity:0;
-    }
+    100% { transform:translateY(200px) rotate(15deg) scale(0.8); opacity:0; }
 }
 
 .torn{
@@ -115,37 +113,37 @@ h1{
 
 <div class="container">
 
-<div class="coupon pink">
+<div class="coupon">
     <div class="main">FREE Sushiro</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon orange">
+<div class="coupon">
     <div class="main">FREE Sushiro</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon blue">
+<div class="coupon">
     <div class="main">Big Hug 10 mins</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon red">
+<div class="coupon">
     <div class="main">Ask for a favor (anything)</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon orange">
+<div class="coupon">
     <div class="main">Ask for a favor (anything)</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
 </div>
 
-<div class="coupon pink">
+<div class="coupon">
     <div class="main">Ask for a favor (anything)</div>
     <div class="sub">Click to use</div>
     <div class="side">Valentine edition</div>
@@ -154,13 +152,7 @@ h1{
 </div>
 
 <script>
-
-function playTearSound(){
-    const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
-    audio.volume = 0.4;
-    audio.play();
-}
-
+// ===== คูปอง =====
 document.addEventListener("DOMContentLoaded", function() {
     const coupons = document.querySelectorAll(".coupon");
 
@@ -173,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function() {
         coupon.addEventListener("click", function(){
             if(!coupon.classList.contains("torn")){
                 coupon.classList.add("torn");
-                playTearSound();
                 localStorage.setItem("coupon_" + index, "used");
 
                 setTimeout(()=>{
@@ -184,6 +175,40 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 });
+
+// ===== Emoji Rain =====
+function createEmoji() {
+    const emojis = ["💖","💕","💘","🍣","🙇‍♂️","🤗"];
+    const emoji = document.createElement("div");
+    emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+
+    emoji.style.position = "fixed";
+    emoji.style.top = "-50px";
+    emoji.style.left = Math.random() * window.innerWidth + "px";
+    emoji.style.fontSize = Math.random() * 25 + 25 + "px";
+    emoji.style.pointerEvents = "none";
+    emoji.style.zIndex = "1";
+    emoji.style.transition = "transform 6s linear, opacity 6s linear";
+
+    document.body.appendChild(emoji);
+
+    let randomX = (Math.random() - 0.5) * 200;
+    let randomRotate = Math.random() * 720;
+
+    setTimeout(() => {
+        emoji.style.transform = `
+            translate(${randomX}px, 110vh)
+            rotate(${randomRotate}deg)
+        `;
+        emoji.style.opacity = "0";
+    }, 50);
+
+    setTimeout(() => {
+        emoji.remove();
+    }, 6000);
+}
+
+setInterval(createEmoji, 250);
 </script>
 
 </body>
