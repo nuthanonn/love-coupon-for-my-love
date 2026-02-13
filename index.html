@@ -55,11 +55,27 @@ h1{
 </div>
 
 <script>
-function useCoupon(element){
-    element.classList.add("used");
-    element.innerHTML += "<br>✔ ใช้แล้ว!";
-}
+document.addEventListener("DOMContentLoaded", function() {
+    const coupons = document.querySelectorAll(".coupon");
+
+    coupons.forEach((coupon, index) => {
+        // โหลดสถานะตอนเปิดเว็บ
+        if(localStorage.getItem("coupon_" + index) === "used"){
+            coupon.classList.add("used");
+            coupon.innerHTML += "<br>✔ ใช้แล้ว!";
+        }
+
+        coupon.addEventListener("click", function(){
+            if(!coupon.classList.contains("used")){
+                coupon.classList.add("used");
+                coupon.innerHTML += "<br>✔ ใช้แล้ว!";
+                localStorage.setItem("coupon_" + index, "used");
+            }
+        });
+    });
+});
 </script>
+
 
 </body>
 </html>
